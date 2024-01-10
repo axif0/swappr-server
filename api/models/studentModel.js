@@ -14,7 +14,13 @@ const studentInfoSchema = new mongoose.Schema({
   contact: {
     type: String,
     required: true
-  }
+  },
+  swapRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'SwapRequest'
+    }
+  ]
 });
 
 const StudentInfo = mongoose.model('StudentInfo', studentInfoSchema);

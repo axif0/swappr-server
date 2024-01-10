@@ -13,9 +13,7 @@ app.use(express.json());
 // mongodb configuration using mongoose
 
 mongoose
-  .connect(
-    `mongodb+srv://muhamadasif570:ami_ki_parbo_baiyaaa@cluster0-swap-course.wwr2nma.mongodb.net/?retryWrites=true&w=majority`
-  )
+  .connect(process.env.MONGODB_URI)
   .then(
     console.log("MongoDB Connected Successfully!")
   )
@@ -33,9 +31,10 @@ mongoose
 const userRoutes = require('./api/routes/userRoutes');
 const swapRequestRoutes = require('./api/routes/SwapRequestRoutes');
 const studentInfoRoutes = require('./api/routes/studentInfoRoutes');
+const messageRoutes = require('./api/routes/messageRoutes'); // Import message routes
+
 app.use('/studentInfo', studentInfoRoutes);
-
-
+app.use('/messages', messageRoutes); // Use the message routes
 app.use('/users', userRoutes);
 app.use('/swap', swapRequestRoutes);
 
