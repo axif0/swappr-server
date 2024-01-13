@@ -11,6 +11,7 @@ router.post('/:swapRequestId', verifyToken, messageController.sendMessage);
 
 // Route to get messages for a specific swap request
 router.get('/:swapRequestId', verifyToken, messageController.getMessages);
+router.delete('/:swapRequestId', verifyToken, messageController.deleteMessages);
 
 
 module.exports = router;

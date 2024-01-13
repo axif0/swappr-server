@@ -60,4 +60,24 @@ const getAllMessages = async (req, res) => {
     }
   };
 
-module.exports = { sendMessage, getMessages,getAllMessages  };
+// Controller function to delete messages for a specific swap request
+const deleteMessages = async (req, res) => {
+  const { swapRequestId } = req.params;
+
+  try {
+    // Find and delete the message document for the given swap request ID
+    const deletedMessage = await Message.findOneAndDelete({ swapRequestId });
+
+    // If the message document doesn't exist, return an error
+    if (!deletedMessage) {
+      return res.status(404).json({ message: 'Message not found for the specified swapRequestId.' });
+    }
+
+    res.status(200).json({ message: 'Messages deleted successfully.', deletedMessage });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+ 
+
+module.exports = { sendMessage, getMessages, getAllMessages, deleteMessages };
