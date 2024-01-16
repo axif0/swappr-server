@@ -32,12 +32,13 @@ const userRoutes = require('./api/routes/userRoutes');
 const swapRequestRoutes = require('./api/routes/SwapRequestRoutes');
 const studentInfoRoutes = require('./api/routes/studentInfoRoutes');
 const messageRoutes = require('./api/routes/messageRoutes'); // Import message routes
+const emailRoutes=require('./api/routes/emailRoutes')
 
 app.use('/studentInfo', studentInfoRoutes);
 app.use('/messages', messageRoutes); // Use the message routes
 app.use('/users', userRoutes);
 app.use('/swap', swapRequestRoutes);
-
+app.use('/email',emailRoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello swappi Client Server!");
